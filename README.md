@@ -12,8 +12,6 @@ Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **Ty
 
 - [Requisitos](#requisitos)
 - [Instalación y Ejecución Local](#instalación-y-ejecución-local)
-- [Variables de Entorno](#variables-de-entorno)
-- [Instalación y Ejecución de pruebas](#instalacion-y-ejecucion-de-pruebas)
 
 ## Requisitos
 
