@@ -13,8 +13,7 @@ Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **Ty
 - [Requisitos](#requisitos)
 - [Instalación y Ejecución Local](#instalación-y-ejecución-local)
 - [Variables de Entorno](#variables-de-entorno)
-- [Migraciones de Prisma](#migraciones-de-prisma)
-- [Ejecución de Pruebas](#ejecución-de-pruebas)
+- [Migraciones de Prisma](#instalacion-yejecucion-de-pruebas
 
 ## Requisitos
 
