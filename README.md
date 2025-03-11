@@ -1,124 +1,99 @@
-## Prueba Técnica para Desarrollador Fullstack Senior
+# Prueba Técnica Fullstack PrevalentWare
 
-### Introducción
+Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **TypeScript**, **Tailwind CSS** y utiliza:
 
-El objetivo de esta prueba técnica es evaluar tus habilidades en el desarrollo de una aplicación fullstack. Deberás implementar un sistema de gestión de ingresos y egresos, la gestión de usuarios y la generación de reportes. El proyecto cuenta con [wireframes](<https://www.figma.com/design/2PINjveveJJ9ZAAwxwNoRK/Wireframes-(Copy)?node-id=0-1&t=6q0Q0id8YnjH9fJt-1>) que pueden servir de guía para el candidato. Sin embargo, el diseño de la interfaz de usuario es libre.
+- **GraphQL** con Apollo Server/Client
+- **Prisma** para la base de datos (PostgreSQL en Supabase)
+- **NextAuth** (Auth.js) con **Auth0** como proveedor y Prisma como adaptador para autenticación basada en sesiones
+- Componentes inspirados en [shadcn](https://ui.shadcn.com/) (o personalizados)
+- Pruebas unitarias con **Jest**
 
-### Requisitos del Proyecto
+## Contenido
 
-#### Funcionalidades Principales
+- [Requisitos](#requisitos)
+- [Instalación y Ejecución Local](#instalación-y-ejecución-local)
+- [Variables de Entorno](#variables-de-entorno)
+- [Migraciones de Prisma](#migraciones-de-prisma)
+- [Ejecución de Pruebas](#ejecución-de-pruebas)
+- [Despliegue en Vercel](#despliegue-en-vercel)
+- [Estructura del Proyecto](#estructura-del-proyecto)
 
-1. **Roles y Permisos**
+## Requisitos
 
-   - **Roles:**
-     - **Usuario:** Solo puede acceder a la gestión de movimientos.
-     - **Administrador:** Puede ver los reportes, editar usuarios y agregar movimientos.
+- [Node.js](https://nodejs.org/) (v16 o superior)
+- [Git](https://git-scm.com/)
+- Cuenta en [Auth0](https://auth0.com/)
+- Cuenta en [Supabase](https://supabase.com/) (para PostgreSQL)
+- Cuenta en [Vercel](https://vercel.com/)
 
-2. **Home**
+## Instalación y Ejecución Local
 
-   - Página de inicio con un menú principal que permite la navegación a tres secciones:
-     - Sistema de gestión de ingresos y gastos (disponible para todos los roles)
-     - Gestión de usuarios (solo para administradores)
-     - Reportes (solo para administradores)
+1. **Clona el repositorio:**
 
-3. **Sistema de Gestión de Ingresos y Gastos**
+       git clone https://github.com/JhonRamirez23/pruebaTecnicaPrevalentWare.git
+       cd tu-repo
 
-   - **Vista de Ingresos y Egresos**
-     - Implementar una tabla que muestre los ingresos y egresos registrados con las siguientes columnas:
-       - Concepto
-       - Monto
-       - Fecha
-       - Usuario
-     - Botón "Nuevo" para agregar un nuevo ingreso o egreso (solo para administradores).
-   - **Formulario de Nuevo Ingreso/Egreso**
-     - Formulario con los campos:
-       - Monto
-       - Concepto
-       - Fecha
-     - Botón para guardar el nuevo movimiento.
+2. **Instala las dependencias:**
 
-4. **Gestión de Usuarios** (solo para administradores)
+        npm install
 
-   - **Vista de Usuarios**
-     - Tabla que muestre la lista de usuarios con las siguientes columnas:
-       - Nombre
-       - Correo
-       - Teléfono
-       - Acciones (editar usuario)
-   - **Formulario de Edición de Usuario**
-     - Formulario con los campos:
-       - Nombre
-       - Rol
-     - Botón para guardar los cambios.
+3. **Configura las variables de entorno:**
 
-5. **Reportes** (solo para administradores)
-   - Mostrar un gráfico de movimientos financieros.
-   - Mostrar el saldo actual.
-   - Botón para descargar el reporte en formato CSV.
+Crea un archivo .env en la raíz del proyecto y define las siguientes variables (ajusta los valores según tu configuración):
 
-### Requisitos Técnicos
+        NEXTAUTH_URL=http://localhost:3000
+        AUTH0_ISSUER=https://dev-tu-dominio.auth0.com
+        AUTH0_CLIENT_ID=tu_auth0_client_id
+        AUTH0_CLIENT_SECRET=tu_auth0_client_secret
+        DATABASE_URL=postgresql://usuario:contraseña@host:puerto/base_de_datos
+        DIRECT_URL="postgresql://postgres.nvnoxdikymekshkqvidm:contraseña@puerto/base_de_datos"
 
-- **Tecnologías y Herramientas:**
-  - **Frontend:**
-    - Next.js utilizando `pages` router.
-    - TypeScript.
-    - Tailwind CSS.
-    - Shadcn para componentes de la interfaz de usuario.
-    - GraphQL con Apollo Client para queries y mutaciones.
-  - **Backend:**
-    - API GraphQL con Apollo Server implementada en una ruta de API de Next.js.
-    - Base de datos de Postgres en Supabase.
-  - **Protección de Datos:** 
-    - Implementar control de acceso basado en roles (RBAC) para asegurar que solo los usuarios autorizados puedan acceder a ciertas funcionalidades y datos.
-    - Proteger el backend para que rechace conexiones no autenticadas.
-  - **Autenticación:**
-    - Utilizar [Authjs](https://authjs.dev/) con [Auth0](https://auth0.com/) como proveedor y [Prisma](https://prisma.io) como adaptador para la autenticación por sesiones de base de datos.
-  - **Pruebas unitarias**
-    - El candidato debe agregar al menos 3 pruebas unitarias donde considere necesario.
-  - **Despliegue:**
-    - Desplegar el proyecto en Vercel.
+4. **Configura el archivo schema.prisma:**
+En tu archivo, configura datasource db de la siguiente manera
 
-### Entregables
+       datasource db {
+        provider  = "postgresql"
+        url       = env("DATABASE_URL")
+        directUrl = env("DIRECT_URL")
+        }
 
-1. **Código Fuente:**
+5. Genera y aplica las migraciones
 
-   - Repositorio en GitHub con el código fuente del proyecto.
-   - Incluir un archivo README con instrucciones claras sobre cómo ejecutar el proyecto localmente y cómo desplegarlo en Vercel.
+        npx prisma generate
+        npx prisma migrate dev --name init
 
-2. **Despliegue:**
-   - Proyecto desplegado en Vercel con la URL proporcionada.
+6. Ejecuta el proyecto en modo de desarrollo
 
-### Criterios de Evaluación
+        npm run dev
 
-- **Funcionalidad:**
+La aplicación deberá correr en http://localhost:3000
 
-  - Cumplimiento de todos los requisitos funcionales.
-  - Correcta implementación del CRUD para ingresos, egresos y usuarios.
-  - Generación y descarga de reportes en formato CSV.
+## ## Instalación y Ejecución de pruebas
 
-- **Calidad del Código:**
+1. Las pruebas se realizan en Jest, por lo cual deberás ejecutar el siguiente comando.
 
-  - Calidad y claridad del código.
-  - Uso adecuado de las mejores prácticas de desarrollo.
-  - Estructura del proyecto.
+        npm test
 
-- **Diseño y UX:**
+2. En la carpeta _tests_ se encuentran los tres archivos que validan las pruebas.
 
-  - Usabilidad de la interfaz.
-  - Implementación de un diseño atractivo.
+       addTransaction.test.ts
+       unauthorized.test.ts
+       updateUser.test.ts
 
-- **Pruebas y Documentación:**
+3. Para el backend, se valida la conexión con Apollo Playground y el endpoint /api/graphql
 
-  - Cobertura de pruebas unitarias.
-  - Calidad de los comentarios dentro del proyecto.
+4. Se valida con Postman la conexión sin autorización o no autenticado a la url http://localhost:3000/api/graphql con el metodo POST
+      
+5. En el Headers se deja en blanco y dentro de Body, en el raw, se escribe lo siguiente:
 
-- **Seguridad:**
+      {
+        "query": "{ me { id name email } }"
+      }
+   
+  La salida debe ser un json con un mensaje Not authenticated.
 
-  - Implementación efectiva de control de acceso basado en roles (RBAC).
-  - Protección adecuada de los datos sensibles.
+## **Despliegue en Vercel**
 
-- **Notas**:
-  - El aplicativo no debe contener diseño responsivo.
-  - El candidato puede utilizar el código cargado en este repositorio. Sin embargo, esta no es una condición necesaria y el candidato puede iniciar el proyecto de 0 si lo desea.
-  - El candidato puede cambiar las versiones de las librerías si lo considera necesario.
-  - El candidato debe compartir el acceso al repositorio de GitHub al correo dsaldarriaga@prevalentware.com
+1. Crea una cuenta en Vercel
+2. Sube el proyecto a GitHub.
+3.  
