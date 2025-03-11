@@ -1,4 +1,4 @@
-import { NextAuthOptions, Session, User as NextAuthUser } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from './prisma';
@@ -13,11 +13,6 @@ declare module 'next-auth' {
       id?: string;
     };
   }
-}
-
-interface AdapterUser extends NextAuthUser {
-  role?: string;
-  id: string;
 }
 
 declare module 'next-auth/adapters' {

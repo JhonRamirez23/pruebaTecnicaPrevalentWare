@@ -43,8 +43,7 @@ export default function NewTransactionPage() {
       // Redirige a la página de movimientos
       router.push('/transactions');
     } catch (error) {
-      console.error(error);
-      alert('Error creando el movimiento');
+      return alert('Error creando el movimiento: ' + error);
     }
   };
 

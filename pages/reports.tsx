@@ -23,7 +23,7 @@ const GET_TRANSACTIONS = gql`
 
 export default function ReportsPage() {
   const { data, loading, error } = useQuery(GET_TRANSACTIONS);
-  const transactions = data?.transactions ?? [];
+  const transactions = useMemo(() => data?.transactions ?? [], [data]);
 
   // Se agrupa por nombre de usuario
   const chartData = useMemo(() => {
