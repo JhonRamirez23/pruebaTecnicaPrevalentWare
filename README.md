@@ -28,16 +28,16 @@ Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **Ty
 
 ## Instalación y Ejecución Local
 
-1. **Clona el repositorio:**
+1.  **Clona el repositorio:**
 
-       git clone https://github.com/JhonRamirez23/pruebaTecnicaPrevalentWare.git
-       cd tu-repo
+    git clone https://github.com/JhonRamirez23/pruebaTecnicaPrevalentWare.git
+    cd tu-repo
 
-2. **Instala las dependencias:**
+2.  **Instala las dependencias:**
 
         npm install
 
-3. **Configura las variables de entorno:**
+3.  **Configura las variables de entorno:**
 
 Crea un archivo .env en la raíz del proyecto y define las siguientes variables (ajusta los valores según tu configuración):
 
@@ -48,21 +48,21 @@ Crea un archivo .env en la raíz del proyecto y define las siguientes variables 
         DATABASE_URL=postgresql://usuario:contraseña@host:puerto/base_de_datos
         DIRECT_URL="postgresql://postgres.nvnoxdikymekshkqvidm:contraseña@puerto/base_de_datos"
 
-4. **Configura el archivo schema.prisma:**
-En tu archivo, configura datasource db de la siguiente manera
+4.  **Configura el archivo schema.prisma:**
+    En tu archivo, configura datasource db de la siguiente manera
 
-       datasource db {
-        provider  = "postgresql"
-        url       = env("DATABASE_URL")
-        directUrl = env("DIRECT_URL")
-        }
+           datasource db {
+            provider  = "postgresql"
+            url       = env("DATABASE_URL")
+            directUrl = env("DIRECT_URL")
+            }
 
-5. Genera y aplica las migraciones
+5.  Genera y aplica las migraciones
 
         npx prisma generate
         npx prisma migrate dev --name init
 
-6. Ejecuta el proyecto en modo de desarrollo
+6.  Ejecuta el proyecto en modo de desarrollo
 
         npm run dev
 
@@ -70,30 +70,29 @@ La aplicación deberá correr en http://localhost:3000
 
 ## ## Instalación y Ejecución de pruebas
 
-1. Las pruebas se realizan en Jest, por lo cual deberás ejecutar el siguiente comando.
+1.  Las pruebas se realizan en Jest, por lo cual deberás ejecutar el siguiente comando.
 
         npm test
 
-2. En la carpeta _tests_ se encuentran los tres archivos que validan las pruebas.
+2.  En la carpeta _tests_ se encuentran los tres archivos que validan las pruebas.
 
-       addTransaction.test.ts
-       unauthorized.test.ts
-       updateUser.test.ts
+    addTransaction.test.ts
+    unauthorized.test.ts
+    updateUser.test.ts
 
-3. Para el backend, se valida la conexión con Apollo Playground y el endpoint /api/graphql
+3.  Para el backend, se valida la conexión con Apollo Playground y el endpoint /api/graphql
 
-4. Se valida con Postman la conexión sin autorización o no autenticado a la url http://localhost:3000/api/graphql con el metodo POST
-      
-5. En el Headers se deja en blanco y dentro de Body, en el raw, se escribe lo siguiente:
+4.  Se valida con Postman la conexión sin autorización o no autenticado a la url http://localhost:3000/api/graphql con el metodo POST
+5.  En el Headers se deja en blanco y dentro de Body, en el raw, se escribe lo siguiente:
 
-      {
-        "query": "{ me { id name email } }"
-      }
-   
-  La salida debe ser un json con un mensaje Not authenticated.
+    {
+    "query": "{ me { id name email } }"
+    }
+
+La salida debe ser un json con un mensaje Not authenticated.
 
 ## **Despliegue en Vercel**
 
 1. Crea una cuenta en Vercel
 2. Sube el proyecto a GitHub.
-3.  
+3.

@@ -4,7 +4,10 @@ import client from '../lib/apolloClient';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={session}>

@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import { useQuery, gql } from "@apollo/client";
-import Layout from "../components/Layout";
-import ProtectedRoute from "../components/ProtectedRoute";
-import ReportChart from "../components/ReportChart";
-import CsvDownloadButton from "../components/CsvDownloadButton";
-import dayjs from "dayjs";
+import React, { useMemo } from 'react';
+import { useQuery, gql } from '@apollo/client';
+import Layout from '../components/Layout';
+import ProtectedRoute from '../components/ProtectedRoute';
+import ReportChart from '../components/ReportChart';
+import CsvDownloadButton from '../components/CsvDownloadButton';
+import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
@@ -39,9 +39,9 @@ export default function ReportsPage() {
       labels,
       datasets: [
         {
-          label: "Transactions by User",
+          label: 'Transactions by User',
           data: amounts,
-          backgroundColor: "rgba(54, 162, 235, 0.6)",
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
         },
       ],
     };
@@ -50,43 +50,56 @@ export default function ReportsPage() {
   // Datos para el CSV
   const csvData = useMemo(() => {
     const headers = [
-      { label: "ID", key: "id" },
-      { label: "Amount", key: "amount" },
-      { label: "Date", key: "date" },
-      { label: "User", key: "user" },
+      { label: 'ID', key: 'id' },
+      { label: 'Amount', key: 'amount' },
+      { label: 'Date', key: 'date' },
+      { label: 'User', key: 'user' },
     ];
     const rows = transactions.map((tx: any) => ({
       id: tx.id,
       amount: tx.amount,
-      date: dayjs.utc(Number(tx.date)).format("DD-MM-YYYY"),
-      user: tx.user?.name || "",
+      date: dayjs.utc(Number(tx.date)).format('DD-MM-YYYY'),
+      user: tx.user?.name || '',
     }));
     return {
       headers,
       data: rows,
-      filename: "report.csv",
+      filename: 'report.csv',
     };
   }, [transactions]);
 
-  if (loading) return <p className="flex justify-center align-middle">Cargando reportes...</p>;
-  if (error) return <p className="flex justify-center align-middle">Error al cargar reportes</p>;
+  if (loading)
+    return (
+      <p className='flex justify-center align-middle'>Cargando reportes...</p>
+    );
+  if (error)
+    return (
+      <p className='flex justify-center align-middle'>
+        Error al cargar reportes
+      </p>
+    );
 
   return (
-    <ProtectedRoute requiredRole="ADMIN">
+    <ProtectedRoute requiredRole='ADMIN'>
       <Layout>
-        <h2 className="text-2xl font-semibold mb-4">Reportes</h2>
-        <div className="flex gap-8">
+        <h2 className='text-2xl font-semibold mb-4'>Reportes</h2>
+        <div className='flex gap-8'>
           {/* Sección Gráfico */}
-          <div className="flex-1">
-            <h3 className="text-lg font-medium mb-2">Movimientos por Usuario</h3>
+          <div className='flex-1'>
+            <h3 className='text-lg font-medium mb-2'>
+              Movimientos por Usuario
+            </h3>
             <ReportChart data={chartData} />
           </div>
           {/* Sección Saldo Actual */}
-          <div className="w-64">
-            <h3 className="text-lg font-medium mb-2">Saldo Actual</h3>
-            <div className="bg-white p-4 rounded shadow mb-4">
-              <p className="text-2xl font-bold">
-                ${transactions.reduce((acc: number, tx: any) => acc + tx.amount, 0).toFixed(2)}
+          <div className='w-64'>
+            <h3 className='text-lg font-medium mb-2'>Saldo Actual</h3>
+            <div className='bg-white p-4 rounded shadow mb-4'>
+              <p className='text-2xl font-bold'>
+                $
+                {transactions
+                  .reduce((acc: number, tx: any) => acc + tx.amount, 0)
+                  .toFixed(2)}
               </p>
             </div>
             <CsvDownloadButton csvData={csvData} />

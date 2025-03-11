@@ -31,7 +31,10 @@ export const typeDefs = gql`
   type Mutation {
     updateUser(id: Int!, name: String!, role: Role!): User!
     createUser(name: String!, email: String!, role: Role!): User!
-    addTransaction(concept: String!, amount: Float!, date: String!): Transaction!
+    addTransaction(
+      concept: String!
+      amount: Float!
+      date: String!
+    ): Transaction!
   }
 `;
-

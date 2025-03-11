@@ -6,11 +6,18 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 // Registramos los componentes necesarios de Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 interface ReportChartProps {
   data: {
@@ -25,7 +32,10 @@ interface ReportChartProps {
 
 export default function ReportChart({ data }: ReportChartProps) {
   return (
-    <div className="bg-white p-4 rounded shadow" style={{ position: "relative", height: 400 }}>
+    <div
+      className='bg-white p-4 rounded shadow'
+      style={{ position: 'relative', height: 400 }}
+    >
       <Bar
         data={data}
         redraw
@@ -37,20 +47,20 @@ export default function ReportChart({ data }: ReportChartProps) {
             x: {
               title: {
                 display: true,
-                text: "Usuario",
+                text: 'Usuario',
               },
             },
             y: {
               title: {
                 display: true,
-                text: "Monto total",
+                text: 'Monto total',
               },
             },
           },
           plugins: {
             title: {
               display: true,
-              text: "Movimientos por Usuario",
+              text: 'Movimientos por Usuario',
               font: {
                 size: 16,
               },
@@ -64,6 +74,3 @@ export default function ReportChart({ data }: ReportChartProps) {
     </div>
   );
 }
-
-
-

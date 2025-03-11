@@ -1,4 +1,4 @@
-import { CSVLink } from "react-csv";
+import { CSVLink } from 'react-csv';
 
 interface CsvData {
   headers: { label: string; key: string }[];
@@ -12,7 +12,7 @@ export default function CsvDownloadButton({ csvData }: { csvData: CsvData }) {
       headers={csvData.headers}
       data={csvData.data}
       filename={csvData.filename}
-      className="inline-block bg-green-500 text-white px-4 py-2 rounded"
+      className='inline-block bg-green-500 text-white px-4 py-2 rounded'
     >
       Descargar CSV
     </CSVLink>

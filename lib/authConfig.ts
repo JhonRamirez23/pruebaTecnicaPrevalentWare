@@ -20,7 +20,7 @@ interface AdapterUser extends NextAuthUser {
   id: string;
 }
 
-declare module "next-auth/adapters" {
+declare module 'next-auth/adapters' {
   interface AdapterUser {
     role: 'ADMIN' | 'USER';
   }
@@ -45,4 +45,3 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
-

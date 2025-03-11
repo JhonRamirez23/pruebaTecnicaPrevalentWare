@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useMutation, gql } from "@apollo/client";
-import Layout from "../../components/Layout";
-import ProtectedRoute from "../../components/ProtectedRoute";
-import Button from "@/components/Button";
-import Link from "next/link";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation, gql } from '@apollo/client';
+import Layout from '../../components/Layout';
+import ProtectedRoute from '../../components/ProtectedRoute';
+import Button from '@/components/Button';
+import Link from 'next/link';
 
 const ADD_TRANSACTION = gql`
   mutation AddTransaction($concept: String!, $amount: Float!, $date: String!) {
@@ -19,16 +19,16 @@ const ADD_TRANSACTION = gql`
 
 export default function NewTransactionPage() {
   const router = useRouter();
-  const [concept, setConcept] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
+  const [concept, setConcept] = useState('');
+  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState('');
   const [addTransaction] = useMutation(ADD_TRANSACTION);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount)) {
-      alert("Invalid amount");
+      alert('Invalid amount');
       return;
     }
 
@@ -41,52 +41,60 @@ export default function NewTransactionPage() {
         },
       });
       // Redirige a la página de movimientos
-      router.push("/transactions");
+      router.push('/transactions');
     } catch (error) {
       console.error(error);
-      alert("Error creando el movimiento");
+      alert('Error creando el movimiento');
     }
   };
 
   return (
-    <ProtectedRoute requiredRole="ADMIN">
+    <ProtectedRoute requiredRole='ADMIN'>
       <Layout>
-        <h2 className="text-2xl font-semibold mb-4">Nuevo Movimiento de Dinero</h2>
-        <form onSubmit={handleSubmit} className="max-w-md bg-white p-4 rounded shadow">
-          <div className="mb-4">
-            <label className="block font-medium mb-1">Monto</label>
+        <h2 className='text-2xl font-semibold mb-4'>
+          Nuevo Movimiento de Dinero
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          className='max-w-md bg-white p-4 rounded shadow'
+        >
+          <div className='mb-4'>
+            <label className='block font-medium mb-1'>Monto</label>
             <input
-              type="number"
-              step="0.01"
-              className="border p-2 w-full"
+              type='number'
+              step='0.01'
+              className='border p-2 w-full'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <div className="mb-4">
-            <label className="block font-medium mb-1">Concepto</label>
+          <div className='mb-4'>
+            <label className='block font-medium mb-1'>Concepto</label>
             <input
-              type="text"
-              className="border p-2 w-full"
+              type='text'
+              className='border p-2 w-full'
               value={concept}
               onChange={(e) => setConcept(e.target.value)}
             />
           </div>
-          <div className="mb-4">
-            <label className="block font-medium mb-1">Fecha</label>
+          <div className='mb-4'>
+            <label className='block font-medium mb-1'>Fecha</label>
             <input
-              type="date"
-              className="border p-2 w-full"
+              type='date'
+              className='border p-2 w-full'
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
           </div>
-          <div className="flex justify-center gap-2">
-            <Button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+          <div className='flex justify-center gap-2'>
+            <Button
+              type='submit'
+              className='bg-green-500 text-white px-4 py-2 rounded'
+            >
               Ingresar
             </Button>
             <Button>
-              <Link href="/transactions">Regresar</Link>
+              <Link href='/transactions'>Regresar</Link>
             </Button>
           </div>
         </form>

@@ -15,9 +15,12 @@ export default startServerAndCreateNextHandler(server, {
     const session = await getServerSession(req, res, authOptions);
     return {
       user: session?.user
-        ? { ...session.user, id: Number((session.user as any).id), role: (session.user as any).role as 'ADMIN' | 'USER' }
+        ? {
+            ...session.user,
+            id: Number((session.user as any).id),
+            role: (session.user as any).role as 'ADMIN' | 'USER',
+          }
         : undefined,
     };
   },
 });
-

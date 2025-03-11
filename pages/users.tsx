@@ -38,8 +38,14 @@ export default function UsersPage() {
   // Guarda el usuario seleccionado para editar
   const [selectedUser, setSelectedUser] = useState<any>(null);
 
-  if (loading) return <p className='flex justify-center align-middle'>Cargando...</p>;
-  if (error) return <p className='flex justify-center align-middle'>Error cargando usuarios</p>;
+  if (loading)
+    return <p className='flex justify-center align-middle'>Cargando...</p>;
+  if (error)
+    return (
+      <p className='flex justify-center align-middle'>
+        Error cargando usuarios
+      </p>
+    );
 
   // Función que se llama al hacer clic en "Edit"
   const handleEdit = (user: any) => {
@@ -59,31 +65,31 @@ export default function UsersPage() {
   };
 
   return (
-    <ProtectedRoute requiredRole="ADMIN">
+    <ProtectedRoute requiredRole='ADMIN'>
       <Layout>
-        <h2 className="text-2xl font-semibold mb-4">Gestión de usuarios</h2>
+        <h2 className='text-2xl font-semibold mb-4'>Gestión de usuarios</h2>
 
         {/* Si no hay usuario seleccionado, muestra la tabla; de lo contrario, muestra el formulario */}
         {!selectedUser ? (
-          <table className="min-w-full bg-white border">
+          <table className='min-w-full bg-white border'>
             <thead>
               <tr>
-                <th className="py-2 border-b">Nombre</th>
-                <th className="py-2 border-b">Correo</th>
-                <th className="py-2 border-b">Role</th>
-                <th className="py-2 border-b">Actiones</th>
+                <th className='py-2 border-b'>Nombre</th>
+                <th className='py-2 border-b'>Correo</th>
+                <th className='py-2 border-b'>Role</th>
+                <th className='py-2 border-b'>Actiones</th>
               </tr>
             </thead>
             <tbody>
               {data.users.map((user: any) => (
                 <tr key={user.id}>
-                  <td className="border px-4 py-2 text-center">{user.name}</td>
-                  <td className="border px-4 py-2 text-center">{user.email}</td>
-                  <td className="border px-4 py-2 text-center">{user.role}</td>
-                  <td className="border px-4 py-2 text-center">
+                  <td className='border px-4 py-2 text-center'>{user.name}</td>
+                  <td className='border px-4 py-2 text-center'>{user.email}</td>
+                  <td className='border px-4 py-2 text-center'>{user.role}</td>
+                  <td className='border px-4 py-2 text-center'>
                     <button
                       onClick={() => handleEdit(user)}
-                      className="px-3 py-1 bg-blue-500 text-white rounded"
+                      className='px-3 py-1 bg-blue-500 text-white rounded'
                     >
                       Editar
                     </button>
@@ -100,8 +106,8 @@ export default function UsersPage() {
           />
         )}
         <Button>
-        <Link href="/">Volver al inicio</Link>
-      </Button>
+          <Link href='/'>Volver al inicio</Link>
+        </Button>
       </Layout>
     </ProtectedRoute>
   );
