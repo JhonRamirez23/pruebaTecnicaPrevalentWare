@@ -12,11 +12,7 @@ Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **Ty
 
 - [Requisitos](#requisitos)
 - [Instalación y Ejecución Local](#instalación-y-ejecución-local)
-- [Variables de Entorno](#variables-de-entorno)
-- [Migraciones de Prisma](#migraciones-de-prisma)
-- [Ejecución de Pruebas](#ejecución-de-pruebas)
-- [Despliegue en Vercel](#despliegue-en-vercel)
-- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Instalación y Ejecución de pruebas](#Instalación-y-Ejecución-de-pruebas)
 
 ## Requisitos
 
@@ -68,7 +64,7 @@ Crea un archivo .env en la raíz del proyecto y define las siguientes variables 
 
 La aplicación deberá correr en http://localhost:3000
 
-## ## Instalación y Ejecución de pruebas
+## Instalación y Ejecución de pruebas
 
 1.  Las pruebas se realizan en Jest, por lo cual deberás ejecutar el siguiente comando.
 
@@ -90,9 +86,3 @@ La aplicación deberá correr en http://localhost:3000
     }
 
 La salida debe ser un json con un mensaje Not authenticated.
-
-## **Despliegue en Vercel**
-
-1. Crea una cuenta en Vercel
-2. Sube el proyecto a GitHub.
-3.
