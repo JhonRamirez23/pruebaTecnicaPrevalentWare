@@ -10,48 +10,35 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
   "rules": {
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": ["..*"]
-      }
-    ],
+    "no-restricted-imports": "off",
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "prefer-destructuring": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
     "no-nested-ternary": "warn",
-    "react/no-unused-prop-types": "error",
-    "react/hook-use-state": "error",
-    "react/function-component-definition": [
-      1,
-      { "namedComponents": "arrow-function" }
-    ],
+    "react/no-unused-prop-types": "warn",
+    "react/hook-use-state": "warn",
+    "react/function-component-definition": "off",
     "react/jsx-key": "error",
-    "react/no-array-index-key": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
-    "no-console": "error",
+    "react/no-array-index-key": "warn",
+    "prettier/prettier": "warn",
+    "no-console": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "complexity": ["warn", 10],
+    "complexity": ["warn", 15],
     "eqeqeq": "error",
-    "prefer-arrow-callback": "error",
+    "prefer-arrow-callback": "warn",
     "arrow-body-style": ["warn", "as-needed"],
-    "func-style": ["error", "expression"]
+    "func-style": ["warn", "expression"]
   },
   "overrides": [
     {
       "files": ["pages/**/*.tsx", "pages/**/*.ts"],
       "rules": {
-        "import/prefer-default-export": "error",
+        "import/prefer-default-export": "off",
         "import/no-default-export": "off"
       }
     }

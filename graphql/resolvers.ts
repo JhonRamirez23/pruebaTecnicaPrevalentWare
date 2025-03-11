@@ -20,9 +20,8 @@ export const resolvers = {
       }
       return prisma.user.findMany({ include: { transactions: true } });
     },
-    transactions: async () => {
-      return prisma.transaction.findMany({ include: { user: true } });
-    },
+    transactions: async () =>
+      prisma.transaction.findMany({ include: { user: true } }),
   },
   Mutation: {
     updateUser: async (_: any, args: any, context: any) => {
@@ -33,11 +32,10 @@ export const resolvers = {
         data: { name: args.name, role: args.role },
       });
     },
-    createUser: async (_: any, args: any) => {
-      return prisma.user.create({
+    createUser: async (_: any, args: any) =>
+      prisma.user.create({
         data: { name: args.name, email: args.email, role: args.role },
-      });
-    },
+      }),
     addTransaction: async (_: any, args: any, context: any) => {
       // Verifica que el usuario esté autenticado
       if (!context.user) throw new AuthenticationError('No autenticado');
