@@ -13,7 +13,7 @@ Este proyecto es una aplicación fullstack desarrollada con **Next.js 14**, **Ty
 - [Requisitos](#requisitos)
 - [Instalación y Ejecución Local](#instalación-y-ejecución-local)
 - [Variables de Entorno](#variables-de-entorno)
-- [Migraciones de Prisma](#instalacion-y-ejecucion-de-pruebas)
+- [Instalación y Ejecución de pruebas](#instalacion-y-ejecucion-de-pruebas)
 
 ## Requisitos
 
@@ -65,7 +65,7 @@ Crea un archivo .env en la raíz del proyecto y define las siguientes variables 
 
 La aplicación deberá correr en http://localhost:3000
 
-## ## Instalación y Ejecución de pruebas
+## Instalación y Ejecución de pruebas
 
 1.  Las pruebas se realizan en Jest, por lo cual deberás ejecutar el siguiente comando.
 
