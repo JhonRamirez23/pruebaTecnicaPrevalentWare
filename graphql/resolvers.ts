@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { AuthenticationError, ForbiddenError } from 'apollo-server-errors';
+import { AuthenticationError, ForbiddenError } from './errors'; // Importa tus errores personalizados
 
 const prisma = new PrismaClient();
 

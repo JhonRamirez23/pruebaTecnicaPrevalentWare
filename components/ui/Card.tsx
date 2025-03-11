@@ -2,7 +2,6 @@ import * as React from 'react';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  content: string;
 }
 
 export const Card = ({ className, ...props }: CardProps) => (
@@ -14,7 +13,6 @@ export const Card = ({ className, ...props }: CardProps) => (
 
 interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  content: string;
 }
 
 export const CardHeader = ({ className, ...props }: CardHeaderProps) => (
@@ -23,7 +21,6 @@ export const CardHeader = ({ className, ...props }: CardHeaderProps) => (
 
 interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   title: string;
-  content: string;
 }
 
 export const CardTitle = ({ className, ...props }: CardTitleProps) => (
@@ -44,7 +41,6 @@ export const CardDescription = ({
 );
 
 interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
   content: string;
 }
 
