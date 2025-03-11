@@ -1,5 +1,3 @@
-declare module "react-csv";
-
 export interface Context {
   user?: { id: number; role: 'ADMIN' | 'USER' };
 }
